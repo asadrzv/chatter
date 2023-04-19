@@ -8,10 +8,10 @@ Time spent: **7** hours spent in total
 
 The following functionality is completed:
 
-- [x] User can sign up/log in
-- [x] User can view all current chats
-- [x] User can view which chats have new messages 
-- [ ] User can send new messages in chats
+- [x] User can sign up/log in (Firebase)
+- [x] User can view all current chats (Demo)
+- [x] User can view which chats have new messages (Demo)
+- [X] User can send new messages in chats (Demo)
 - [ ] User can start new chat with another user
 
 ## Video Walkthrough

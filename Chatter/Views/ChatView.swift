@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ChatView: View {
     @EnvironmentObject var chatListViewModel: ChatListViewModel
-    let chat: Chat
     private let columns = [
         GridItem(.flexible(minimum: 10))
     ]
+    let chat: Chat
     @State private var messageText = ""
     @FocusState private var isFocused
 
@@ -33,7 +33,7 @@ struct ChatView: View {
         }
         // Mark chat messages as read and clear blue indicator
         .onAppear {
-            chatListViewModel.markChatAsRead(chat: chat)
+            //chatListViewModel.markChatAsRead(chat: chat)
         }
         .padding(.top, 1)
         .navigationTitle(chat.otherUser.name)

@@ -8,13 +8,10 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State private var isLoggedIn = false
-    @State private var loginStatusMessage = ""
-    @State private var email = ""
-    @State private var password = ""
-    
+    @StateObject private var loginViewModel = LoginViewModel()
+
     var body: some View {
-        if isLoggedIn {
+        if loginViewModel.isLoggedIn {
             // Segue to list of all user messages on successful login/signup
             ChatListView()
         } else {
@@ -30,13 +27,13 @@ struct LoginView: View {
                         // Username/password fields
                         Group {
                             // Get email from user
-                            TextField("Email", text: $email)
+                            TextField("Email", text: $loginViewModel.email)
                                 .keyboardType(.emailAddress)
                                 .autocapitalization(.none)
                                 .disableAutocorrection(true)
                             
                             // Get password from user
-                            SecureField("Password", text: $password)
+                            SecureField("Password", text: $loginViewModel.password)
                         }
                         .padding(15)
                         .background(.white)
@@ -44,7 +41,7 @@ struct LoginView: View {
                         // Login/Create Account butttons
                         VStack {
                             // Login Button
-                            Button(action: handleLogin) {
+                            Button(action: loginViewModel.handleLogin) {
                                 Text("Login")
                                     .font(.headline)
                             }
@@ -55,7 +52,7 @@ struct LoginView: View {
                             .cornerRadius(40)
                             
                             // Create Account Button
-                            Button(action: handleCreateAccount) {
+                            Button(action: loginViewModel.handleCreateAccount) {
                                 Text("Create Account")
                                     .font(.headline)
                             }
@@ -68,7 +65,7 @@ struct LoginView: View {
                         .padding(15)
                         
                         // Login status message
-                        Text(self.loginStatusMessage)
+                        Text(loginViewModel.loginStatusMessage)
                             .foregroundColor(.red)
                     }
                     .padding()
@@ -76,73 +73,6 @@ struct LoginView: View {
                 .background(Color(.init(white: 0, alpha: 0.05)).ignoresSafeArea())
             }
         }
-    }
-    
-    // MARK: - Action Handlers
-    
-    // Login user on button press
-    private func handleLogin() {
-        loginUser()
-    }
-    
-    // Create account on button press
-    private func handleCreateAccount() {
-        createUser()
-    }
-    
-    // MARK: - Firebase
-    
-    // Login user to Firebase Auth using specified credentials
-    private func loginUser() {
-        FirebaseManager.shared.auth.signIn(withEmail: email, password: password) { result, err in
-            if let err = err {
-                // Failed to login user
-                print("Failed to login user:", err)
-                self.loginStatusMessage = "Failed to login user: \(err.localizedDescription)"
-            } else {
-                // Succesfully logged in user
-                storeUserInformation()
-                self.isLoggedIn = true
-                self.loginStatusMessage = "Succesfully logged in as user: \(result?.user.uid ?? "")"
-                print("Succesfully logged in as user: \(result?.user.uid ?? "")")
-            }
-        }
-    }
-    
-    // Create user to Firebase Auth using specified credentials
-    private func createUser() {
-        FirebaseManager.shared.auth.createUser(withEmail: email, password: password) { result, err in
-            if let err = err {
-                // Failed to create user
-                print("Failed to create user:", err)
-                self.loginStatusMessage = "Failed to create user: \(err.localizedDescription)"
-            } else {
-                // Succesfully created user
-                storeUserInformation()
-                self.isLoggedIn = true
-                self.loginStatusMessage = "Succesfully created user: \(result?.user.uid ?? "")"
-                print("Succesfully created user: \(result?.user.uid ?? "")")
-            }
-        }
-    }
-    
-    // Store user credentials to Firebase Firestore
-    private func storeUserInformation() {
-        // Create user data (key-value pair) to store in collection if user doesn't exist
-        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
-        let userData = User(email: self.email).dictionary
-        
-        FirebaseManager.shared.firestore.collection("users")
-            .document(uid).setData(userData) { err in
-                if let err = err {
-                    // Failed to store user data
-                    print("Failed to store user data:", err)
-                    self.loginStatusMessage += "\n\nFailed to store user data: \(err.localizedDescription)"
-                } else {
-                    // Succesfully stored user data
-                    print("Succesfully stored data for user: \(uid)")
-                }
-            }
     }
 }
 

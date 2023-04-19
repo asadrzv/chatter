@@ -21,10 +21,15 @@ struct Chat: Identifiable {
     
     // Dictionary Key-Value pair for storing chat data in Firebase
     var dictionary: [String: Any] {
+        //var messagesDict = [String: String]()
+        /*for message in messages {
+            messagesDict.append(message.dictionary)
+        }*/
+        
         return [
-            "otherUser": otherUser.id,
-            "messages": messages,
+            "otherUserID": otherUser.id,
             "hasUnreadMessages": hasUnreadMessages
+            //"messages": messagesDict
         ]
     }
 }

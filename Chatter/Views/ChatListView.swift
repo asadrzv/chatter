@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ChatListView: View {
     @StateObject private var chatListViewModel = ChatListViewModel()
-    @State private var isLoggedOut = false
         
     var body: some View {
         NavigationView {
@@ -29,13 +28,13 @@ struct ChatListView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     // Compose new chat message button
-                    Button(action: handleComposeMessage) {
+                    Button(action: chatListViewModel.handleComposeMessage) {
                         Image(systemName: "square.and.pencil")
                     }
                 }
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     // Logout button
-                    Button(action: handleLogout) {
+                    Button(action: chatListViewModel.handleLogout) {
                         Text("Log out")
                     }
                 }
@@ -44,33 +43,8 @@ struct ChatListView: View {
             .navigationTitle("Messages")
         }
         // Segue back to Login View if user successfully logged out
-        .fullScreenCover(isPresented: $isLoggedOut, onDismiss: nil) {
+        .fullScreenCover(isPresented: $chatListViewModel.isLoggedOut, onDismiss: nil) {
             LoginView()
-        }
-    }
-    
-    // MARK: - Action Handlers
-    
-    // Segue to compose new chat message screen on button press
-    private func handleComposeMessage() {
-        print("Compose new message button pressed")
-    }
-    
-    // Logout user on button press
-    private func handleLogout() {
-        logoutUser()
-    }
-    
-    // MARK: - Firebase
-    
-    // Logout user from Firebase Auth using their credentials
-    private func logoutUser() {
-        do {
-            try FirebaseManager.shared.auth.signOut()
-            self.isLoggedOut = true
-            print("Succesfully logged out!")
-        } catch let err as NSError {
-            print("Failed to log out user:", err)
         }
     }
 }

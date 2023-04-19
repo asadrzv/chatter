@@ -11,6 +11,7 @@ class ChatListViewModel: ObservableObject {
     @Published var user: User?
     @Published var chatList = SAMPLE_CHAT_LIST
     @Published var searchText = ""
+    @Published var isLoggedOut = false
     
     // Build filtered list of chats according to search text in user names
    var filteredChatList: [Chat] {
@@ -41,6 +42,18 @@ class ChatListViewModel: ObservableObject {
         }
     }
     
+    // MARK: - Action Handlers
+    
+    // Segue to compose new chat message screen on button press
+    func handleComposeMessage() {
+        print("Compose new message button pressed")
+    }
+    
+    // Logout user on button press
+    func handleLogout() {
+        self.logoutUser()
+    }
+    
     // MARK: - Firebase
     
     // Fetch user data from Firebase and store in User data
@@ -61,5 +74,16 @@ class ChatListViewModel: ObservableObject {
                     self.user = User(email: email)
                 }
             }
+    }
+    
+    // Logout user from Firebase Auth using their credentials
+    private func logoutUser() {
+        do {
+            try FirebaseManager.shared.auth.signOut()
+            self.isLoggedOut = true
+            print("Succesfully logged out!")
+        } catch let err as NSError {
+            print("Failed to log out user:", err)
+        }
     }
 }
