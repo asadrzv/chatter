@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2425E2C229F32D03009DE9BC /* NewChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2425E2C129F32D03009DE9BC /* NewChatView.swift */; };
+		2425E2C429F32D12009DE9BC /* NewChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2425E2C329F32D12009DE9BC /* NewChatViewModel.swift */; };
+		245BC4EB29F5B08900718FD9 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245BC4EA29F5B08900718FD9 /* ChatViewModel.swift */; };
 		246C904829EF8CAE00854508 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C904729EF8CAE00854508 /* LoginViewModel.swift */; };
 		24CAC0F729E5E40B008C1C75 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CAC0F629E5E40B008C1C75 /* FirebaseManager.swift */; };
 		24CAC0FB29E61BE1008C1C75 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CAC0FA29E61BE1008C1C75 /* ChatListView.swift */; };
@@ -26,6 +29,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2425E2C129F32D03009DE9BC /* NewChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatView.swift; sourceTree = "<group>"; };
+		2425E2C329F32D12009DE9BC /* NewChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatViewModel.swift; sourceTree = "<group>"; };
+		245BC4EA29F5B08900718FD9 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		246C904729EF8CAE00854508 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		24CAC0F629E5E40B008C1C75 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		24CAC0FA29E61BE1008C1C75 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
@@ -73,6 +79,8 @@
 			children = (
 				246C904729EF8CAE00854508 /* LoginViewModel.swift */,
 				24CAC10229E764E9008C1C75 /* ChatListViewModel.swift */,
+				245BC4EA29F5B08900718FD9 /* ChatViewModel.swift */,
+				2425E2C329F32D12009DE9BC /* NewChatViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -125,6 +133,7 @@
 				24CAC0FA29E61BE1008C1C75 /* ChatListView.swift */,
 				24CAC0FC29E63A1E008C1C75 /* ChatCellView.swift */,
 				24CAC10A29E8F07A008C1C75 /* ChatView.swift */,
+				2425E2C129F32D03009DE9BC /* NewChatView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -274,14 +283,17 @@
 				24CAC0FB29E61BE1008C1C75 /* ChatListView.swift in Sources */,
 				24CAC0F729E5E40B008C1C75 /* FirebaseManager.swift in Sources */,
 				24CAC0FF29E73198008C1C75 /* User.swift in Sources */,
+				2425E2C229F32D03009DE9BC /* NewChatView.swift in Sources */,
 				24CAC10729E7BAC9008C1C75 /* Message.swift in Sources */,
 				24FE92F629E4D58900E16C68 /* LoginView.swift in Sources */,
 				24CAC10329E764E9008C1C75 /* ChatListViewModel.swift in Sources */,
 				24CAC10529E7BA63008C1C75 /* Chat.swift in Sources */,
 				24CAC10B29E8F07B008C1C75 /* ChatView.swift in Sources */,
+				2425E2C429F32D12009DE9BC /* NewChatViewModel.swift in Sources */,
 				246C904829EF8CAE00854508 /* LoginViewModel.swift in Sources */,
 				24CAC0FD29E63A1E008C1C75 /* ChatCellView.swift in Sources */,
 				24FE92E329E4C95300E16C68 /* ChatterApp.swift in Sources */,
+				245BC4EB29F5B08900718FD9 /* ChatViewModel.swift in Sources */,
 				24CAC10929E8E086008C1C75 /* Date+Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

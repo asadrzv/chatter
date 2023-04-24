@@ -8,27 +8,24 @@
 import SwiftUI
 
 struct ChatListView: View {
-    @StateObject private var chatListViewModel = ChatListViewModel()
-        
+    @ObservedObject var chatListViewModel = ChatListViewModel()
+            
     var body: some View {
         NavigationView {
             // List of all user chats
-            List {
-                ForEach(chatListViewModel.filteredChatList) { chat in
-                    NavigationLink(destination: {
-                        ChatView(chat: chat)
-                            .environmentObject(chatListViewModel)
-                    }) {
-                        ChatCellView(chat: chat)
-                    }
+            List(chatListViewModel.filteredUsers) { user in
+                NavigationLink(destination: {
+                    ChatView(otherUser: user)
+                }) {
+                    ChatCellView(otherUser: user)
                 }
             }
             // Search bar for user to filter chats by user name
             .searchable(text: $chatListViewModel.searchText)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    // Compose new chat message button
-                    Button(action: chatListViewModel.handleComposeMessage) {
+                    // Compose new chat button
+                    Button(action: chatListViewModel.handleComposeNewChat) {
                         Image(systemName: "square.and.pencil")
                     }
                 }
@@ -42,8 +39,12 @@ struct ChatListView: View {
             .listStyle(.plain)
             .navigationTitle("Messages")
         }
+        // Pull up sheet to view list of all users to compose new chat to
+        .sheet(isPresented: $chatListViewModel.isShowingNewChatView) {
+            NewChatView()
+        }
         // Segue back to Login View if user successfully logged out
-        .fullScreenCover(isPresented: $chatListViewModel.isLoggedOut, onDismiss: nil) {
+        .fullScreenCover(isPresented: $chatListViewModel.isLoggedOut) {
             LoginView()
         }
     }

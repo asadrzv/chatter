@@ -8,26 +8,24 @@
 import Foundation
 
 struct Message: Identifiable {
-    // Enum indicates if message was sent/received
-    enum MessageType: String {
-        case Sent
-        case Received
-    }
     // Message id
-    let id = UUID()
-    // Date message sent/recieved
-    let date: Date
+    var id: String { return UUID().uuidString }
+    // User id who message is from
+    var fromId: String
+    // User id who message is to
+    var toId: String
     // Text contained in message
-    let text: String
-    // Enum indicates if message was sent/received
-    let type: MessageType
+    var text: String
+    // Timestamp message sent/recieved
+    var timestamp: Date
     
     // Dictionary Key-Value pair for storing message data in Firebase
     var dictionary: [String: Any] {
         return [
-            "date": date.descriptiveString(),
+            "fromId": fromId,
+            "toId": toId,
             "text": text,
-            "type": type.rawValue
+            "timestamp": timestamp
         ]
     }
 }

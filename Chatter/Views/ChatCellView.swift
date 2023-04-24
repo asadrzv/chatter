@@ -8,7 +8,13 @@
 import SwiftUI
 
 struct ChatCellView: View {
-    let chat: Chat
+    @ObservedObject var chatViewModel: ChatViewModel
+    let otherUser: User
+    
+    init(otherUser: User) {
+        self.otherUser = otherUser
+        self.chatViewModel = ChatViewModel.init(otherUser: otherUser)
+    }
     
     var body: some View {
         HStack {
@@ -23,19 +29,19 @@ struct ChatCellView: View {
                 VStack(alignment: .leading, spacing: 5) {
                     HStack {
                         // Username text
-                        Text(chat.otherUser.name)
+                        Text(otherUser.name)
                             .fontWeight(.bold)
                         
                         Spacer()
                         
                         // Time last message received text
-                        Text(chat.messages.last?.date.descriptiveString() ?? "")
+                        Text(chatViewModel.messages.last?.timestamp.descriptiveString() ?? "")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
                     HStack {
                         // Message sent to user text
-                        Text(chat.messages.last?.text ?? "")
+                        Text(chatViewModel.messages.last?.text ?? "")
                             .lineLimit(2)
                             .font(.subheadline)
                             .foregroundColor(.secondary)
@@ -45,10 +51,11 @@ struct ChatCellView: View {
                     }
                 }
                 // Unread message indicator (blue/none)
-                Circle()
-                    .foregroundColor(chat.hasUnreadMessages ? .blue : .clear)
+                /*Circle()
+                    //.foregroundColor(chat.hasUnreadMessages ? .blue : .clear)
                     .frame(width: 15, height: 15)
                     .frame(maxWidth: .infinity, alignment: .trailing)
+                 */
             }
         }
         .frame(height: 80)
@@ -57,6 +64,6 @@ struct ChatCellView: View {
 
 struct ChatCellView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatCellView(chat: SAMPLE_CHAT_LIST[0])
+        ChatCellView(otherUser: SAMPLE_USER)
     }
 }

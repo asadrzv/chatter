@@ -8,13 +8,18 @@
 import SwiftUI
 
 struct ChatView: View {
-    @EnvironmentObject var chatListViewModel: ChatListViewModel
+    @ObservedObject var chatViewModel: ChatViewModel
+    let otherUser: User
+
     private let columns = [
         GridItem(.flexible(minimum: 10))
     ]
-    let chat: Chat
-    @State private var messageText = ""
     @FocusState private var isFocused
+    
+    init(otherUser: User) {
+        self.otherUser = otherUser
+        self.chatViewModel = ChatViewModel.init(otherUser: otherUser)
+    }
 
     var body: some View {
         VStack {
@@ -32,11 +37,11 @@ struct ChatView: View {
             getToolBarView()
         }
         // Mark chat messages as read and clear blue indicator
-        .onAppear {
+        /*.onAppear {
             //chatListViewModel.markChatAsRead(chat: chat)
-        }
+        }*/
         .padding(.top, 1)
-        .navigationTitle(chat.otherUser.name)
+        .navigationTitle(chatViewModel.otherUser?.name ?? "Unknown")
         .navigationBarTitleDisplayMode(.inline)
     }
     
@@ -44,26 +49,27 @@ struct ChatView: View {
     
     // Return all message bubble views for user chat
     private func getMessagesView(viewWidth: CGFloat) -> some View {
-        ForEach(chat.messages) { message in
-            if let isReceived = message.type == .Received {
-                HStack {
-                    ZStack {
-                        // Message text content
-                        Text(message.text)
-                            .padding(.horizontal)
-                            .padding(.vertical, 10)
-                            // Set message bubble color to gray (received) or blue (sent)
-                            .background(isReceived ? .gray.opacity(0.3) : .blue.opacity(0.9))
-                            // Set message text to gray (received) or blue (sent)
-                            .foregroundColor(isReceived ? .black : .white)
-                            .cornerRadius(10)
-                    }
-                    .frame(width: viewWidth * 0.7, alignment: isReceived ? .leading : .trailing)
-                    .padding(.vertical)
+        ForEach(chatViewModel.messages) { message in
+            let uid = FirebaseManager.shared.auth.currentUser?.uid
+            let isReceived = message.toId == uid
+
+            HStack {
+                ZStack {
+                    // Message text content
+                    Text(message.text)
+                        .padding(.horizontal)
+                        .padding(.vertical, 10)
+                        // Set message bubble color to gray (received) or blue (sent)
+                        .background(isReceived ? .gray.opacity(0.3) : .blue.opacity(0.9))
+                        // Set message text to gray (received) or blue (sent)
+                        .foregroundColor(isReceived ? .black : .white)
+                        .cornerRadius(10)
                 }
-                // Align message to left (received) or right (sent)
-                .frame(maxWidth: .infinity, alignment: isReceived ? .leading : .trailing)
+                .frame(width: viewWidth * 0.7, alignment: isReceived ? .leading : .trailing)
+                .padding(.vertical)
             }
+            // Align message to left (received) or right (sent)
+            .frame(maxWidth: .infinity, alignment: isReceived ? .leading : .trailing)
         }
     }
     
@@ -72,7 +78,7 @@ struct ChatView: View {
         VStack {
             HStack {
                 // Get message to send from user
-                TextField("Message", text: $messageText)
+                TextField("Message", text: $chatViewModel.messageText)
                     .padding(.horizontal)
                     .frame(height: 40)
                     .background(.white)
@@ -80,16 +86,16 @@ struct ChatView: View {
                     .focused($isFocused)
                 
                 // Send messsage button
-                Button(action: handleSendMessage) {
+                Button(action: chatViewModel.handleSendMessage) {
                     Image(systemName: "paperplane.fill")
                         .foregroundColor(.white)
                         .frame(width: 40, height: 40)
                         .background(Circle()
                             // Set send message button to gray (nothing to send) or blue (text to send)
-                            .foregroundColor(messageText.isEmpty ? .gray : .blue)
+                            .foregroundColor(chatViewModel.messageText.isEmpty ? .gray : .blue)
                         )
                 }
-                .disabled(messageText.isEmpty)
+                .disabled(chatViewModel.messageText.isEmpty)
             }
             .frame(height: 40)
         }
@@ -97,18 +103,10 @@ struct ChatView: View {
         .padding(.horizontal)
         .background(.thickMaterial)
     }
-    
-    // MARK: - Action Handlers
-    
-    // Send message on button press
-    private func handleSendMessage() {
-        chatListViewModel.sendMesage(text: messageText, in: chat)
-    }
 }
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView(chat: SAMPLE_CHAT_LIST[0])
-            .environmentObject(ChatListViewModel())
+        ChatView(otherUser: SAMPLE_USER)
     }
 }

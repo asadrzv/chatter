@@ -20,8 +20,8 @@ struct LoginView: View {
                 ScrollView {
                     VStack(spacing: 20) {
                         // Login view image
-                        Image(systemName: "person.circle.fill")
-                            .font(.system(size: 100))
+                        Image(systemName: "message.circle.fill")
+                            .font(.system(size: 150))
                             .padding(.bottom, 40)
                         
                         // Username/password fields

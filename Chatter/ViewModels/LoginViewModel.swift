@@ -8,10 +8,11 @@
 import Foundation
 
 class LoginViewModel: ObservableObject {
-    @Published var isLoggedIn = false
-    @Published var loginStatusMessage = ""
     @Published var email = ""
     @Published var password = ""
+    
+    @Published var loginStatusMessage = ""
+    @Published var isLoggedIn = false
     
     // MARK: - Action Handlers
     
@@ -32,15 +33,15 @@ class LoginViewModel: ObservableObject {
         FirebaseManager.shared.auth.signIn(withEmail: email, password: password) { result, err in
             if let err = err {
                 // Failed to login user
-                print("Failed to login user:", err)
+                print("Failed to login user: ", err)
                 self.loginStatusMessage = "Failed to login user: \(err.localizedDescription)"
-            } else {
-                // Succesfully logged in user
-                self.storeUserInformation()
-                self.isLoggedIn = true
-                self.loginStatusMessage = "Succesfully logged in as user: \(result?.user.uid ?? "")"
-                print("Succesfully logged in as user: \(result?.user.uid ?? "")")
+                return
             }
+            // Succesfully logged in user
+            self.storeUserInformation()
+            self.isLoggedIn = true
+            self.loginStatusMessage = "Succesfully logged in as user: \(result?.user.uid ?? "")"
+            print("Succesfully logged in as user: \(result?.user.uid ?? "")")
         }
     }
     
@@ -49,15 +50,15 @@ class LoginViewModel: ObservableObject {
         FirebaseManager.shared.auth.createUser(withEmail: email, password: password) { result, err in
             if let err = err {
                 // Failed to create user
-                print("Failed to create user:", err)
+                print("Failed to create user: ", err)
                 self.loginStatusMessage = "Failed to create user: \(err.localizedDescription)"
-            } else {
-                // Succesfully created user
-                self.storeUserInformation()
-                self.isLoggedIn = true
-                self.loginStatusMessage = "Succesfully created user: \(result?.user.uid ?? "")"
-                print("Succesfully created user: \(result?.user.uid ?? "")")
+                return
             }
+            // Succesfully created user
+            self.storeUserInformation()
+            self.isLoggedIn = true
+            self.loginStatusMessage = "Succesfully created user: \(result?.user.uid ?? "")"
+            print("Succesfully created user: \(result?.user.uid ?? "")")
         }
     }
     
@@ -65,18 +66,19 @@ class LoginViewModel: ObservableObject {
     private func storeUserInformation() {
         // Create user data (key-value pair) to store in collection if user doesn't exist
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
-        let userData = User(email: self.email).dictionary
+        let userData = User(id: uid, email: self.email).dictionary
         
+        // Get/create 'users' collection and store user data
         FirebaseManager.shared.firestore.collection("users")
             .document(uid).setData(userData) { err in
                 if let err = err {
                     // Failed to store user data
-                    print("Failed to store user data:", err)
+                    print("Failed to store user data: ", err)
                     self.loginStatusMessage += "\n\nFailed to store user data: \(err.localizedDescription)"
-                } else {
-                    // Succesfully stored user data
-                    print("Succesfully stored data for user: \(uid)")
+                    return
                 }
+                // Succesfully stored user data
+                print("Succesfully stored data for user: \(uid)")
             }
     }
 }

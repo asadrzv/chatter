@@ -9,9 +9,9 @@ import Foundation
 
 struct User: Identifiable {
     // User id
-    let id = UUID()
+    var id: String
     // User email
-    let email: String
+    var email: String
     // User name taken from email to display with messages
     var name: String {
         let text = email.split(separator: "@")
@@ -21,8 +21,11 @@ struct User: Identifiable {
     // Dictionary Key-Value pair for storing user data in Firebase
     var dictionary: [String: Any] {
         return [
+            "id": id,
             "email": email,
             "name": name
         ]
     }
 }
+
+let SAMPLE_USER = User(id: "sampleUserID", email: "sampleUser@gmail.com")
