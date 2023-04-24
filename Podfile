@@ -7,7 +7,7 @@ target 'Chatter' do
 
   # Pods for Chatter
   # Add the Firebase pod for Google Analytics
-  # pod 'FirebaseAnalytics'
+  pod 'FirebaseAnalytics'
 
   # For Analytics without IDFA collection capability, use this pod instead
   # pod ‘Firebase/AnalyticsWithoutAdIdSupport’
