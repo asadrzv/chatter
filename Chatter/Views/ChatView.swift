@@ -10,10 +10,8 @@ import SwiftUI
 struct ChatView: View {
     @ObservedObject var chatViewModel: ChatViewModel
     let otherUser: User
-
-    private let columns = [
-        GridItem(.flexible(minimum: 10))
-    ]
+    
+    private let columns = [GridItem(.flexible(minimum: 10))]
     @FocusState private var isFocused
     
     init(otherUser: User) {
@@ -24,22 +22,13 @@ struct ChatView: View {
     var body: some View {
         VStack {
             // Chat messsage bubbles between users
-            GeometryReader { geometry in
-                ScrollView {
-                    // Message bubble views for each user
-                    LazyVGrid(columns: columns) {
-                        getMessagesView(viewWidth: geometry.size.width)
-                            .padding(.horizontal)
-                    }
-                }
+            ScrollView {
+                getMessagesView(viewWidth: 400)
+                    .padding(.horizontal)
             }
             // Botoom tool bar view to type/send new message
             getToolBarView()
         }
-        // Mark chat messages as read and clear blue indicator
-        /*.onAppear {
-            //chatListViewModel.markChatAsRead(chat: chat)
-        }*/
         .padding(.top, 1)
         .navigationTitle(chatViewModel.otherUser?.name ?? "Unknown")
         .navigationBarTitleDisplayMode(.inline)
@@ -50,7 +39,6 @@ struct ChatView: View {
     // Return all message bubble views for user chat
     private func getMessagesView(viewWidth: CGFloat) -> some View {
         ForEach(chatViewModel.messages) { message in
-        //ForEach(chat.messages) { message in
             let uid = FirebaseManager.shared.auth.currentUser?.uid
             let isReceived = message.toId == uid
 

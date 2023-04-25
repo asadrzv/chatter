@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ChatCellView: View {
-    //@ObservedObject var chatViewModel: ChatViewModel
+    @ObservedObject var chatViewModel: ChatViewModel
     let otherUser: User
     
     init(otherUser: User) {
         self.otherUser = otherUser
-        //self.chatViewModel = ChatViewModel.init(otherUser: otherUser)
+        self.chatViewModel = ChatViewModel.init(otherUser: otherUser)
     }
     
     var body: some View {
@@ -29,22 +29,22 @@ struct ChatCellView: View {
                 VStack(alignment: .leading, spacing: 5) {
                     HStack {
                         // Username text
-                        //Text(chatViewModel.otherUser?.name ?? "Unknown")
-                        Text("Username")
+                        Text(chatViewModel.otherUser?.name ?? "Unknown")
+                        //Text("Username")
                             .fontWeight(.bold)
                         
                         Spacer()
                         
                         // Time last message received text
-                        //Text(chatViewModel.messages.last?.timestamp.descriptiveString() ?? "")
-                        Text("Timestamp")
+                        Text(chatViewModel.messages.last?.timestamp.descriptiveString() ?? "")
+                        //Text("Timestamp")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
                     HStack {
                         // Message sent to user text
-                        //Text(chatViewModel.messages.last?.text ?? "")
-                        Text("Recent Message")
+                        Text(chatViewModel.messages.last?.text ?? "")
+                        //Text("Recent Message")
                             .lineLimit(2)
                             .font(.subheadline)
                             .foregroundColor(.secondary)
