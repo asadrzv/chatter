@@ -16,7 +16,7 @@ struct ChatterApp: App {
     
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            SignInView()
         }
     }
 }

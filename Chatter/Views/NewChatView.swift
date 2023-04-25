@@ -16,7 +16,7 @@ struct NewChatView: View {
             List(newChatViewModel.users) { user in
                 NavigationLink(destination: {
                     // Segue to new chat view
-                    ChatView(otherUser: user)
+                    //ChatView(otherUser: user)
                 }) {
                     // User profile image
                     Image(systemName: "person.circle.fill")

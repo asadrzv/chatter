@@ -12,11 +12,8 @@ struct User: Identifiable {
     var id: String
     // User email
     var email: String
-    // User name taken from email to display with messages
-    var name: String {
-        let text = email.split(separator: "@")
-        return String(text[0])
-    }
+    // User name
+    var name: String
     
     // Dictionary Key-Value pair for storing user data in Firebase
     var dictionary: [String: Any] {
@@ -28,4 +25,4 @@ struct User: Identifiable {
     }
 }
 
-let SAMPLE_USER = User(id: "sampleUserID", email: "sampleUser@gmail.com")
+let SAMPLE_USER = User(id: "sampleUserID", email: "sampleUser@gmail.com", name: "sampleUserName")

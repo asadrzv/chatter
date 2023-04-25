@@ -1,5 +1,5 @@
 //
-//  LoginView.swift
+//  SignInView.swift
 //  Chatter
 //
 //  Created by Asad Rizvi on 4/10/23.
@@ -7,42 +7,39 @@
 
 import SwiftUI
 
-struct LoginView: View {
-    @StateObject private var loginViewModel = LoginViewModel()
+struct SignInView: View {
+    @StateObject private var authViewModel = AuthViewModel()
 
     var body: some View {
-        if loginViewModel.isLoggedIn {
+        if authViewModel.isSignedIn {
             // Segue to list of all user messages on successful login/signup
             ChatListView()
         } else {
-            // Display login/signup view
             NavigationView {
                 ScrollView {
                     VStack(spacing: 20) {
-                        // Login view image
+                        // Sign In view image
                         Image(systemName: "message.circle.fill")
                             .font(.system(size: 150))
                             .padding(.bottom, 40)
                         
-                        // Username/password fields
                         Group {
                             // Get email from user
-                            TextField("Email", text: $loginViewModel.email)
+                            TextField("Email", text: $authViewModel.email)
                                 .keyboardType(.emailAddress)
                                 .autocapitalization(.none)
                                 .disableAutocorrection(true)
                             
                             // Get password from user
-                            SecureField("Password", text: $loginViewModel.password)
+                            SecureField("Password", text: $authViewModel.password)
                         }
                         .padding(15)
                         .background(.white)
                         
-                        // Login/Create Account butttons
                         VStack {
-                            // Login Button
-                            Button(action: loginViewModel.handleLogin) {
-                                Text("Login")
+                            // Sign In Button
+                            Button(action: authViewModel.handleSignIn) {
+                                Text("Log in")
                                     .font(.headline)
                             }
                             .frame(minWidth: 0, maxWidth: .infinity)
@@ -51,21 +48,18 @@ struct LoginView: View {
                             .background(.blue)
                             .cornerRadius(40)
                             
-                            // Create Account Button
-                            Button(action: loginViewModel.handleCreateAccount) {
-                                Text("Create Account")
-                                    .font(.headline)
+                            HStack {
+                                Text("Don't have an account?")
+                                // Sign Up Button
+                                NavigationLink(destination: SignUpView(authViewModel: authViewModel)) {
+                                    Text("Sign Up")
+                                }
                             }
-                            .frame(minWidth: 0, maxWidth: .infinity)
-                            .padding(15)
-                            .foregroundColor(.white)
-                            .background(.blue)
-                            .cornerRadius(40)
                         }
                         .padding(15)
                         
-                        // Login status message
-                        Text(loginViewModel.loginStatusMessage)
+                        // Error status message
+                        Text(authViewModel.errorStatusMessage)
                             .foregroundColor(.red)
                     }
                     .padding()
@@ -76,8 +70,8 @@ struct LoginView: View {
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
+struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        SignInView()
     }
 }

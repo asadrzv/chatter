@@ -12,7 +12,7 @@ class ChatListViewModel: ObservableObject {
     @Published var user: User?
     @Published var searchText = ""
     
-    @Published var isLoggedOut = false
+    @Published var isSignedOut = false
     @Published var isShowingNewChatView = false
     
     // Build filtered list of chats according to search text in user names
@@ -26,7 +26,7 @@ class ChatListViewModel: ObservableObject {
    }
     
     init() {
-        self.fetchUser()
+        self.fetchCurrentUser()
         self.fetchAllUsers()
     }
     
@@ -38,8 +38,8 @@ class ChatListViewModel: ObservableObject {
     }
     
     // Logout user on button press
-    func handleLogout() {
-        self.logoutUser()
+    func handleSignOut() {
+        self.signOutUser()
     }
     
     // MARK: - Firebase
@@ -62,7 +62,8 @@ class ChatListViewModel: ObservableObject {
                     
                     let id = data["id"] as? String ?? ""
                     let email = data["email"] as? String ?? ""
-                    let user = User(id: id, email: email)
+                    let name = data["name"] as? String ?? ""
+                    let user = User(id: id, email: email, name: name)
                     
                     // Only add new users not already in userList
                     if user.id != uid {
@@ -73,7 +74,7 @@ class ChatListViewModel: ObservableObject {
     }
     
     // Fetch user data from Firebase and store in User data
-    private func fetchUser() {
+    private func fetchCurrentUser() {
         // Get user id from Firebase if user exists
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
         
@@ -88,18 +89,25 @@ class ChatListViewModel: ObservableObject {
                 // Get user data from Firebase snapshot
                 guard let data = snapshot?.data() else { return }
                 let email = data["email"] as? String ?? ""
-                self.user = User(id: uid, email: email)
+                let name = data["name"] as? String ?? ""
+                self.user = User(id: uid, email: email, name: name)
             }
     }
     
     // Logout user from Firebase Auth using their credentials
-    private func logoutUser() {
+    private func signOutUser() {
         do {
             try FirebaseManager.shared.auth.signOut()
-            self.isLoggedOut = true
-            print("Succesfully logged out!")
+            
+            self.isSignedOut = true
+            self.isShowingNewChatView = false
+            self.user = nil
+            self.users = []
+            self.searchText = ""
+            
+            print("Succesfully signed out!")
         } catch let err as NSError {
-            print("Failed to log out user:", err)
+            print("Failed to sign out user:", err)
         }
     }
 }

@@ -34,7 +34,8 @@ class NewChatViewModel: ObservableObject {
                     
                     let id = data["id"] as? String ?? ""
                     let email = data["email"] as? String ?? ""
-                    let user = User(id: id, email: email)
+                    let name = data["name"] as? String ?? ""
+                    let user = User(id: id, email: email, name: name)
                     
                     // Only add new users not already in userList
                     if user.id != uid {

@@ -16,7 +16,7 @@ class ChatViewModel: ObservableObject {
     init(otherUser: User) {
         self.otherUser = otherUser
         
-        self.fetchAllMessages()
+        self.fetchUserMessages()
     }
     
     // MARK: - Action Handlers
@@ -29,7 +29,7 @@ class ChatViewModel: ObservableObject {
     // MARK: - Firebase
     
     // Fetch all message data for current user from Firebase and store in Messages list
-    private func fetchAllMessages() {
+    private func fetchUserMessages() {
         // Get current user (sender) id from Firebase if user exists
         guard let fromId = FirebaseManager.shared.auth.currentUser?.uid else { return }
         // Get other user (recipient) id to send message to
@@ -53,10 +53,10 @@ class ChatViewModel: ObservableObject {
                         let fromId = data["fromId"] as? String ?? ""
                         let toId = data["toId"] as? String ?? ""
                         let text = data["text"] as? String ?? ""
-                        let date = data["timestamp"] as? Date ?? Date()
+                        let timestamp = data["timestamp"] as? Date ?? Date()
                         
                         // Store message date as Message model in list
-                        let message = Message(fromId: fromId, toId: toId, text: text, timestamp: date)
+                        let message = Message(fromId: fromId, toId: toId, text: text, timestamp: timestamp)
                         self.messages.append(message)
                     }
                 })
@@ -103,6 +103,6 @@ class ChatViewModel: ObservableObject {
             }
         
         // Empty message text field after sending it
-        messageText = ""
+        self.messageText = ""
     }
 }

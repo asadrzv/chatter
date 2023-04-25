@@ -50,6 +50,7 @@ struct ChatView: View {
     // Return all message bubble views for user chat
     private func getMessagesView(viewWidth: CGFloat) -> some View {
         ForEach(chatViewModel.messages) { message in
+        //ForEach(chat.messages) { message in
             let uid = FirebaseManager.shared.auth.currentUser?.uid
             let isReceived = message.toId == uid
 

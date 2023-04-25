@@ -10,7 +10,8 @@
 		2425E2C229F32D03009DE9BC /* NewChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2425E2C129F32D03009DE9BC /* NewChatView.swift */; };
 		2425E2C429F32D12009DE9BC /* NewChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2425E2C329F32D12009DE9BC /* NewChatViewModel.swift */; };
 		245BC4EB29F5B08900718FD9 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245BC4EA29F5B08900718FD9 /* ChatViewModel.swift */; };
-		246C904829EF8CAE00854508 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C904729EF8CAE00854508 /* LoginViewModel.swift */; };
+		246C904829EF8CAE00854508 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C904729EF8CAE00854508 /* AuthViewModel.swift */; };
+		24960B6729F7265E00FE38B3 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24960B6629F7265E00FE38B3 /* SignUpView.swift */; };
 		24CAC0F729E5E40B008C1C75 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CAC0F629E5E40B008C1C75 /* FirebaseManager.swift */; };
 		24CAC0FB29E61BE1008C1C75 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CAC0FA29E61BE1008C1C75 /* ChatListView.swift */; };
 		24CAC0FD29E63A1E008C1C75 /* ChatCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CAC0FC29E63A1E008C1C75 /* ChatCellView.swift */; };
@@ -24,7 +25,7 @@
 		24FE92E329E4C95300E16C68 /* ChatterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE92E229E4C95300E16C68 /* ChatterApp.swift */; };
 		24FE92E729E4C95500E16C68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24FE92E629E4C95500E16C68 /* Assets.xcassets */; };
 		24FE92EA29E4C95500E16C68 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24FE92E929E4C95500E16C68 /* Preview Assets.xcassets */; };
-		24FE92F629E4D58900E16C68 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE92F529E4D58900E16C68 /* LoginView.swift */; };
+		24FE92F629E4D58900E16C68 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE92F529E4D58900E16C68 /* SignInView.swift */; };
 		46C61D6E717290DC33435632 /* Pods_Chatter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE3B34F3BE5A6AAAA58C53CE /* Pods_Chatter.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +33,8 @@
 		2425E2C129F32D03009DE9BC /* NewChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatView.swift; sourceTree = "<group>"; };
 		2425E2C329F32D12009DE9BC /* NewChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatViewModel.swift; sourceTree = "<group>"; };
 		245BC4EA29F5B08900718FD9 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
-		246C904729EF8CAE00854508 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		246C904729EF8CAE00854508 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		24960B6629F7265E00FE38B3 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		24CAC0F629E5E40B008C1C75 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		24CAC0FA29E61BE1008C1C75 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		24CAC0FC29E63A1E008C1C75 /* ChatCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCellView.swift; sourceTree = "<group>"; };
@@ -47,7 +49,7 @@
 		24FE92E229E4C95300E16C68 /* ChatterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatterApp.swift; sourceTree = "<group>"; };
 		24FE92E629E4C95500E16C68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24FE92E929E4C95500E16C68 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		24FE92F529E4D58900E16C68 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		24FE92F529E4D58900E16C68 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		48121DC9304D36776FB91332 /* Pods-Chatter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatter.debug.xcconfig"; path = "Target Support Files/Pods-Chatter/Pods-Chatter.debug.xcconfig"; sourceTree = "<group>"; };
 		BED96DFB244D66B46EE8D51B /* Pods-Chatter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatter.release.xcconfig"; path = "Target Support Files/Pods-Chatter/Pods-Chatter.release.xcconfig"; sourceTree = "<group>"; };
 		FE3B34F3BE5A6AAAA58C53CE /* Pods_Chatter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chatter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,7 +79,7 @@
 		24CAC10129E76455008C1C75 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				246C904729EF8CAE00854508 /* LoginViewModel.swift */,
+				246C904729EF8CAE00854508 /* AuthViewModel.swift */,
 				24CAC10229E764E9008C1C75 /* ChatListViewModel.swift */,
 				245BC4EA29F5B08900718FD9 /* ChatViewModel.swift */,
 				2425E2C329F32D12009DE9BC /* NewChatViewModel.swift */,
@@ -129,7 +131,8 @@
 		24FE92F129E4CE6F00E16C68 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				24FE92F529E4D58900E16C68 /* LoginView.swift */,
+				24FE92F529E4D58900E16C68 /* SignInView.swift */,
+				24960B6629F7265E00FE38B3 /* SignUpView.swift */,
 				24CAC0FA29E61BE1008C1C75 /* ChatListView.swift */,
 				24CAC0FC29E63A1E008C1C75 /* ChatCellView.swift */,
 				24CAC10A29E8F07A008C1C75 /* ChatView.swift */,
@@ -285,15 +288,16 @@
 				24CAC0FF29E73198008C1C75 /* User.swift in Sources */,
 				2425E2C229F32D03009DE9BC /* NewChatView.swift in Sources */,
 				24CAC10729E7BAC9008C1C75 /* Message.swift in Sources */,
-				24FE92F629E4D58900E16C68 /* LoginView.swift in Sources */,
+				24FE92F629E4D58900E16C68 /* SignInView.swift in Sources */,
 				24CAC10329E764E9008C1C75 /* ChatListViewModel.swift in Sources */,
 				24CAC10529E7BA63008C1C75 /* Chat.swift in Sources */,
 				24CAC10B29E8F07B008C1C75 /* ChatView.swift in Sources */,
 				2425E2C429F32D12009DE9BC /* NewChatViewModel.swift in Sources */,
-				246C904829EF8CAE00854508 /* LoginViewModel.swift in Sources */,
+				246C904829EF8CAE00854508 /* AuthViewModel.swift in Sources */,
 				24CAC0FD29E63A1E008C1C75 /* ChatCellView.swift in Sources */,
 				24FE92E329E4C95300E16C68 /* ChatterApp.swift in Sources */,
 				245BC4EB29F5B08900718FD9 /* ChatViewModel.swift in Sources */,
+				24960B6729F7265E00FE38B3 /* SignUpView.swift in Sources */,
 				24CAC10929E8E086008C1C75 /* Date+Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

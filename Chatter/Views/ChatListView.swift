@@ -30,9 +30,9 @@ struct ChatListView: View {
                     }
                 }
                 ToolbarItemGroup(placement: .navigationBarLeading) {
-                    // Logout button
-                    Button(action: chatListViewModel.handleLogout) {
-                        Text("Log out")
+                    // Sign out button
+                    Button(action: chatListViewModel.handleSignOut) {
+                        Text("Sign out")
                     }
                 }
             }
@@ -41,11 +41,12 @@ struct ChatListView: View {
         }
         // Pull up sheet to view list of all users to compose new chat to
         .sheet(isPresented: $chatListViewModel.isShowingNewChatView) {
-            NewChatView()
+            //NewChatView()
+            Text("New Chat View")
         }
         // Segue back to Login View if user successfully logged out
-        .fullScreenCover(isPresented: $chatListViewModel.isLoggedOut) {
-            LoginView()
+        .fullScreenCover(isPresented: $chatListViewModel.isSignedOut) {
+            SignInView()
         }
     }
 }

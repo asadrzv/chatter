@@ -7,18 +7,17 @@
 
 import Foundation
 
+/*
 struct Chat: Identifiable {
     // Chat id should match the users
-    var id: String {
-        return otherUser.id
-    }
+    var id: String { return UUID().uuidString }
     // Other user chatting with
-    let otherUser: User
+    var otherUser: User
     // Messages contained in chat
     var messages: [Message]
     // Indicates if user has unread messages in this chat
     var hasUnreadMessages = false
-}
+}*/
 
 /*
 let SAMPLE_CHAT_LIST = [SAMPLE_CHAT_1, SAMPLE_CHAT_2, SAMPLE_CHAT_3, SAMPLE_CHAT_4]
