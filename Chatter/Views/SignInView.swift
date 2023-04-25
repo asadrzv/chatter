@@ -59,12 +59,22 @@ struct SignInView: View {
                         .padding(15)
                         
                         // Error status message
-                        Text(authViewModel.errorStatusMessage)
-                            .foregroundColor(.red)
+                        /*Text(authViewModel.errorStatusMessage)
+                            .foregroundColor(.red)*/
                     }
                     .padding()
                 }
                 .background(Color(.init(white: 0, alpha: 0.05)).ignoresSafeArea())
+                // Error status message alert
+                .alert(isPresented: $authViewModel.isShowingErrorAlert) {
+                    Alert(
+                        title: Text("Error 🙁"),
+                        message: Text(authViewModel.errorStatusMessage),
+                        dismissButton: .default(Text("Ok"), action: {
+                            authViewModel.isShowingErrorAlert = false
+                        })
+                    )
+                }
             }
         }
     }

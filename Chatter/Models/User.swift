@@ -8,11 +8,8 @@
 import Foundation
 
 struct User: Identifiable {
-    // User id
     var id: String
-    // User email
     var email: String
-    // User name
     var name: String
     
     // Dictionary Key-Value pair for storing user data in Firebase
