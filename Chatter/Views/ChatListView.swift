@@ -20,8 +20,6 @@ struct ChatListView: View {
                     ChatCellView(otherUser: user)
                 }
             }
-            // Search bar for user to filter chats by user name
-            .searchable(text: $chatListViewModel.searchText)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     // Compose new chat button
@@ -36,6 +34,8 @@ struct ChatListView: View {
                     }
                 }
             }
+            // Search bar for user to filter chats by user name
+            .searchable(text: $chatListViewModel.searchText)
             .listStyle(.plain)
             .navigationTitle("Messages")
         }

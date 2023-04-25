@@ -39,7 +39,7 @@ struct SignInView: View {
                         VStack {
                             // Sign In Button
                             Button(action: authViewModel.handleSignIn) {
-                                Text("Log in")
+                                Text("Sign in")
                                     .font(.headline)
                             }
                             .frame(minWidth: 0, maxWidth: .infinity)

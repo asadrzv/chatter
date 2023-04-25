@@ -22,12 +22,57 @@ class AuthViewModel: ObservableObject {
     
     // Sign in user on button press
     func handleSignIn() {
-        self.signInUser()
+        if isSignInInputFilled() {
+            self.signInUser()
+        }
     }
     
     // Sign up user on button press
     func handleSignUp() {
-        self.signUpUser()
+        if isSignUpInputFilled() && isPasswordConfirmed() {
+            self.signUpUser()
+        }
+    }
+    
+    // MARK: - Extra Error Handling
+    
+    // Return true if passwords match, otherwise return false
+    private func isPasswordConfirmed() -> Bool {
+        if password != confirmPassword {
+            self.errorStatusMessage = "Entered passwords do not match"
+            self.isShowingErrorAlert = true
+            print("Entered passwords do not match")
+            return false
+        }
+        self.isShowingErrorAlert = false
+        
+        return true
+    }
+    
+    // Check if all input fields filled in for SignIn view
+    private func isSignInInputFilled() -> Bool {
+        if email.isEmpty || password.isEmpty {
+            self.errorStatusMessage = "Please fill in all fields"
+            self.isShowingErrorAlert = true
+            print("Please fill in all fields")
+            return false
+        }
+        self.isShowingErrorAlert = false
+        
+        return true
+    }
+    
+    // Check if all input fields filled in for SignUp view
+    private func isSignUpInputFilled() -> Bool {
+        if name.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty {
+            self.errorStatusMessage = "Please fill in all fields"
+            self.isShowingErrorAlert = true
+            print("Please fill in all fields")
+            return false
+        }
+        self.isShowingErrorAlert = false
+        
+        return true
     }
     
     // MARK: - Firebase
@@ -45,6 +90,7 @@ class AuthViewModel: ObservableObject {
             // Succesfully logged in user
             self.storeUserInformation()
             self.isSignedIn = true
+            self.isShowingErrorAlert = false
             self.errorStatusMessage = "Succesfully logged in as user: \(result?.user.uid ?? "")"
             print("Succesfully logged in as user: \(result?.user.uid ?? "")")
         }
@@ -53,7 +99,7 @@ class AuthViewModel: ObservableObject {
     // Sign up user to Firebase Auth using specified credentials
     private func signUpUser() {
         FirebaseManager.shared.auth.createUser(withEmail: email, password: password) { result, err in
-            if let err = err, self.isPasswordConfirmed() {
+            if let err = err {
                 // Failed to create user
                 print("Failed to create user: ", err)
                 self.errorStatusMessage = "Failed to create user: \(err.localizedDescription)"
@@ -63,6 +109,7 @@ class AuthViewModel: ObservableObject {
             // Succesfully created user
             self.storeUserInformation()
             self.isSignedIn = true
+            self.isShowingErrorAlert = false
             self.errorStatusMessage = "Succesfully created user: \(result?.user.uid ?? "")"
             print("Succesfully created user: \(result?.user.uid ?? "")")
         }
@@ -80,24 +127,13 @@ class AuthViewModel: ObservableObject {
                 if let err = err {
                     // Failed to store/retrieve user data
                     print("Failed to store/retrieve user data: ", err)
-                    self.errorStatusMessage += "\n\nFailed to store user data: \(err.localizedDescription)"
+                    self.errorStatusMessage = "\n\nFailed to store user data: \(err.localizedDescription)"
                     self.isShowingErrorAlert = true
                     return
                 }
                 // Succesfully stored/retrieved user data
+                self.isShowingErrorAlert = false
                 print("Succesfully stored/retrieved data for user: \(uid)")
             }
-    }
-    
-    // Return true if password fields match
-    private func isPasswordConfirmed() -> Bool {
-        if (password.isEmpty || confirmPassword.isEmpty) && (self.password != self.confirmPassword) {
-            self.errorStatusMessage += "\nPasswords do not match"
-            self.isShowingErrorAlert = true
-            print("\nPasswords do not match")
-            return false
-        }
-        
-        return true
     }
 }
