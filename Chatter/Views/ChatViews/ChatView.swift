@@ -30,7 +30,7 @@ struct ChatView: View {
             getToolBarView()
         }
         .padding(.top, 1)
-        .navigationTitle(chatViewModel.otherUser?.name ?? "Unknown")
+        .navigationTitle(chatViewModel.otherUser?.email ?? "Unknown")
         .navigationBarTitleDisplayMode(.inline)
     }
     

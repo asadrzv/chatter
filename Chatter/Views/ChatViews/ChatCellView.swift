@@ -29,7 +29,7 @@ struct ChatCellView: View {
                 VStack(alignment: .leading, spacing: 5) {
                     HStack {
                         // Username text
-                        Text(chatViewModel.otherUser?.name ?? "Unknown")
+                        Text(chatViewModel.otherUser?.email ?? "Unknown")
                         //Text("Username")
                             .fontWeight(.bold)
                         
