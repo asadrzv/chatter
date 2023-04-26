@@ -21,7 +21,7 @@ class ChatListViewModel: ObservableObject {
            return self.users
        }
        return self.users.filter {
-           $0.name.lowercased().contains(searchText.lowercased())
+           $0.email.lowercased().contains(searchText.lowercased())
        }
    }
     
