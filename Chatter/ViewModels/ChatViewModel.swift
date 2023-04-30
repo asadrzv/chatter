@@ -10,6 +10,7 @@ import Foundation
 class ChatViewModel: ObservableObject {
     @Published var messages = [Message]()
     @Published var messageText = ""
+    @Published var messageCount = 0
     
     let otherUser: User?
     
@@ -85,6 +86,8 @@ class ChatViewModel: ObservableObject {
                 }
                 // Succesfully stored message data
                 print("Succesfully stored message for sending user: \(fromId)")
+                self.messageText = ""
+                self.messageCount += 1
             }
         
         // Store recipient message data in 'messages' collection
@@ -101,8 +104,5 @@ class ChatViewModel: ObservableObject {
                 // Succesfully stored message data
                 print("Succesfully stored message for recieving user: \(toId)")
             }
-        
-        // Empty message text field after sending it
-        self.messageText = ""
     }
 }

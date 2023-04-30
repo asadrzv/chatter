@@ -14,6 +14,8 @@ struct ChatView: View {
     private let columns = [GridItem(.flexible(minimum: 10))]
     @FocusState private var isFocused
     
+    static let scrollToBottomPlaceholder = "" // Share scroll string with all messages
+    
     init(otherUser: User) {
         self.otherUser = otherUser
         self.chatViewModel = ChatViewModel.init(otherUser: otherUser)
@@ -23,8 +25,25 @@ struct ChatView: View {
         VStack {
             // Chat messsage bubbles between users
             ScrollView {
-                getMessagesView(viewWidth: 400)
-                    .padding(.horizontal)
+                // ScrollView proxy to auto scroll to latest chat message (bottom of view)
+                ScrollViewReader { scrollViewProxy in
+                    VStack {
+                        getMessagesView(viewWidth: 400)
+                            .padding(.horizontal)
+                        
+                        // Empty spacer at bottom of view to auto scroll to
+                        HStack {
+                            Spacer()
+                        }
+                        .id(Self.scrollToBottomPlaceholder)
+                    }
+                    // Auto scroll to latest chat message when count increases
+                    .onReceive(chatViewModel.$messageCount) { _ in
+                        withAnimation(.easeOut(duration: 0.5)) {
+                            scrollViewProxy.scrollTo(Self.scrollToBottomPlaceholder, anchor: .bottom)
+                        }
+                    }
+                }
             }
             // Botoom tool bar view to type/send new message
             getToolBarView()
