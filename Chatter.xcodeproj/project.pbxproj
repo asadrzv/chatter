@@ -33,9 +33,9 @@
 		2425E2C329F32D12009DE9BC /* NewChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatViewModel.swift; sourceTree = "<group>"; };
 		245BC4EA29F5B08900718FD9 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		246C904729EF8CAE00854508 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
-		24960B6629F7265E00FE38B3 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignUpView.swift; path = ../AAuthViews/SignUpView.swift; sourceTree = "<group>"; };
+		24960B6629F7265E00FE38B3 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		24CAC0F629E5E40B008C1C75 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
-		24CAC0FA29E61BE1008C1C75 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatListView.swift; path = "../New Group1/ChatListView.swift"; sourceTree = "<group>"; };
+		24CAC0FA29E61BE1008C1C75 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		24CAC0FC29E63A1E008C1C75 /* ChatCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCellView.swift; sourceTree = "<group>"; };
 		24CAC0FE29E73198008C1C75 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		24CAC10229E764E9008C1C75 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
@@ -47,7 +47,7 @@
 		24FE92E229E4C95300E16C68 /* ChatterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatterApp.swift; sourceTree = "<group>"; };
 		24FE92E629E4C95500E16C68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24FE92E929E4C95500E16C68 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		24FE92F529E4D58900E16C68 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignInView.swift; path = "../New Group/SignInView.swift"; sourceTree = "<group>"; };
+		24FE92F529E4D58900E16C68 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		4015CE7B953D87487CCB61D2 /* Pods-Chatter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatter.release.xcconfig"; path = "Target Support Files/Pods-Chatter/Pods-Chatter.release.xcconfig"; sourceTree = "<group>"; };
 		935C2E4BF685ECC1A6E9B4E3 /* Pods-Chatter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatter.debug.xcconfig"; path = "Target Support Files/Pods-Chatter/Pods-Chatter.debug.xcconfig"; sourceTree = "<group>"; };
 		CEFAD1EED68C326D34A5F5F3 /* Pods_Chatter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chatter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,25 +65,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		242A0A0129F8C620003A54C1 /* AuthViews */ = {
-			isa = PBXGroup;
-			children = (
-				24FE92F529E4D58900E16C68 /* SignInView.swift */,
-				24960B6629F7265E00FE38B3 /* SignUpView.swift */,
-			);
-			path = AuthViews;
-			sourceTree = "<group>";
-		};
-		242A0A0229F8C679003A54C1 /* ChatViews */ = {
-			isa = PBXGroup;
-			children = (
-				24CAC0FA29E61BE1008C1C75 /* ChatListView.swift */,
-				24CAC0FC29E63A1E008C1C75 /* ChatCellView.swift */,
-				24CAC10A29E8F07A008C1C75 /* ChatView.swift */,
-			);
-			path = ChatViews;
-			sourceTree = "<group>";
-		};
 		24CAC10029E73592008C1C75 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,8 +129,11 @@
 		24FE92F129E4CE6F00E16C68 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				242A0A0129F8C620003A54C1 /* AuthViews */,
-				242A0A0229F8C679003A54C1 /* ChatViews */,
+				24960B6629F7265E00FE38B3 /* SignUpView.swift */,
+				24FE92F529E4D58900E16C68 /* SignInView.swift */,
+				24CAC0FA29E61BE1008C1C75 /* ChatListView.swift */,
+				24CAC0FC29E63A1E008C1C75 /* ChatCellView.swift */,
+				24CAC10A29E8F07A008C1C75 /* ChatView.swift */,
 				2425E2C129F32D03009DE9BC /* NewChatView.swift */,
 			);
 			path = Views;
