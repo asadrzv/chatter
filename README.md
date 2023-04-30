@@ -8,11 +8,13 @@ Time spent: **12** hours spent in total
 
 The following functionality is completed:
 
-- [x] User can log in/out
+- [x] User can sign up/in/out with Firebase Auth
+- [x] User can search by email for other users
+- [x] User can start new chat with another users
 - [x] User can view all current chats
 - [X] User can send new messages in chats
-- [x] User can start new chat with another user
 - [ ] User can view which chats have new messages
+- [ ] User can view messages timestamps for those sent/received
 
 ## Video Walkthrough
 
