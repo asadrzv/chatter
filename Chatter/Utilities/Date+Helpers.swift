@@ -8,7 +8,6 @@
 import Foundation
 
 extension Date {
-    
     // Returns date as String formatted to match other chat apps
     // Returns 'Today' if last chat message one day old
     // Returns 'Yesterday' if last chat message two days old

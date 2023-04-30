@@ -84,6 +84,23 @@
 			path = ChatViews;
 			sourceTree = "<group>";
 		};
+		245D4A2829FF0DB800FF04FA /* AuthViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				246C904729EF8CAE00854508 /* AuthViewModel.swift */,
+			);
+			path = AuthViewModels;
+			sourceTree = "<group>";
+		};
+		245D4A2929FF0DC600FF04FA /* ChatViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				24CAC10229E764E9008C1C75 /* ChatListViewModel.swift */,
+				245BC4EA29F5B08900718FD9 /* ChatViewModel.swift */,
+			);
+			path = ChatViewModels;
+			sourceTree = "<group>";
+		};
 		24CAC10029E73592008C1C75 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,9 +113,8 @@
 		24CAC10129E76455008C1C75 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				246C904729EF8CAE00854508 /* AuthViewModel.swift */,
-				24CAC10229E764E9008C1C75 /* ChatListViewModel.swift */,
-				245BC4EA29F5B08900718FD9 /* ChatViewModel.swift */,
+				245D4A2829FF0DB800FF04FA /* AuthViewModels */,
+				245D4A2929FF0DC600FF04FA /* ChatViewModels */,
 				2425E2C329F32D12009DE9BC /* NewChatViewModel.swift */,
 			);
 			path = ViewModels;
