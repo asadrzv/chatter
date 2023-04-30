@@ -13,6 +13,7 @@ The following functionality is completed:
 - [x] User can start new chat with another users
 - [x] User can view all current chats
 - [X] User can send new messages in chats
+- [X] View will auto scroll down to latest messages at bottom
 - [ ] User can view which chats have new messages
 - [ ] User can view messages timestamps for those sent/received
 
