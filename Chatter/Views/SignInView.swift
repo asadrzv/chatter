@@ -18,11 +18,10 @@ struct SignInView: View {
             NavigationView {
                 ScrollView {
                     VStack(spacing: 20) {
-                        Spacer()
-                        
                         // Sign In view image
                         Image(systemName: "message.circle.fill")
                             .font(.system(size: 150))
+                            .padding(.top, 80)
                             .padding(.bottom, 40)
                         
                         Group {
