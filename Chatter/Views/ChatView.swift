@@ -47,7 +47,7 @@ struct ChatView: View {
                 }
             }
             // Botoom tool bar view to type/send new message
-            getToolBarView()
+            ToolBarView
         }
         .padding(.top, 1)
         .navigationTitle(chatViewModel.otherUser?.email ?? "Unknown")
@@ -56,8 +56,7 @@ struct ChatView: View {
     
     // MARK: - Custom Views
     
-    // Return Toolbar view for user to type new message to send
-    private func getToolBarView() -> some View {
+    private var ToolBarView: some View {
         VStack {
             HStack {
                 // Get message to send from user
