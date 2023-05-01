@@ -37,9 +37,6 @@ struct MessageView: View {
 
 struct MessageView_Previews: PreviewProvider {
     static var previews: some View {
-        MessageView(message: Message(fromId: SAMPLE_USER.id,
-                                     toId: "Sample Receiving User ID",
-                                     text: "Message text",
-                                     timestamp: Date()))
+        MessageView(message: SAMPLE_MESSAGE)
     }
 }

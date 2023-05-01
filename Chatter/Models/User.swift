@@ -22,4 +22,6 @@ struct User: Identifiable {
     }
 }
 
-let SAMPLE_USER = User(id: "sampleUserID", email: "sampleUser@gmail.com", name: "sampleUserName")
+let SAMPLE_USER = User(id: "sampleUserID",
+                       email: "sampleUser@gmail.com",
+                       name: "sampleUserName")

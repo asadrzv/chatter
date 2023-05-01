@@ -24,3 +24,8 @@ struct Message: Identifiable {
         ]
     }
 }
+
+let SAMPLE_MESSAGE = Message(fromId: SAMPLE_USER.id,
+                             toId: "sampleReceivingUserID",
+                             text: "sampleMessageText",
+                             timestamp: Date())
