@@ -21,12 +21,12 @@ struct ChatListView: View {
                 }
             }
             .toolbar {
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                /*ToolbarItemGroup(placement: .navigationBarTrailing) {
                     // Compose new chat button
                     Button(action: chatListViewModel.handleComposeNewChat) {
                         Image(systemName: "square.and.pencil")
                     }
-                }
+                }*/
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     // Sign out button
                     Button(action: chatListViewModel.handleSignOut) {
