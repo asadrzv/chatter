@@ -23,13 +23,14 @@ struct ChatView: View {
 
     var body: some View {
         VStack {
-            // Chat messsage bubbles between users
+            // Chat messsage bubbles between users with auto scroll to latest messge
             ScrollView {
-                // ScrollView proxy to auto scroll to latest chat message (bottom of view)
                 ScrollViewReader { scrollViewProxy in
                     VStack {
-                        getMessagesView(viewWidth: 400)
-                            .padding(.horizontal)
+                        ForEach(chatViewModel.messages) { message in
+                            MessageView(message: message)
+                        }
+                        .padding(.horizontal)
                         
                         // Empty spacer at bottom of view to auto scroll to
                         HStack {
@@ -37,7 +38,7 @@ struct ChatView: View {
                         }
                         .id(Self.scrollToBottomPlaceholder)
                     }
-                    // Auto scroll to latest chat message when count increases
+                    // Auto scroll to latest chat message when message count increases
                     .onReceive(chatViewModel.$messageCount) { _ in
                         withAnimation(.easeOut(duration: 0.5)) {
                             scrollViewProxy.scrollTo(Self.scrollToBottomPlaceholder, anchor: .bottom)
@@ -54,32 +55,6 @@ struct ChatView: View {
     }
     
     // MARK: - Custom Views
-    
-    // Return all message bubble views for user chat
-    private func getMessagesView(viewWidth: CGFloat) -> some View {
-        ForEach(chatViewModel.messages) { message in
-            let uid = FirebaseManager.shared.auth.currentUser?.uid
-            let isReceived = message.toId == uid
-
-            HStack {
-                ZStack {
-                    // Message text content
-                    Text(message.text)
-                        .padding(.horizontal)
-                        .padding(.vertical, 10)
-                        // Set message bubble color to gray (received) or blue (sent)
-                        .background(isReceived ? .gray.opacity(0.3) : .blue.opacity(0.9))
-                        // Set message text to gray (received) or blue (sent)
-                        .foregroundColor(isReceived ? .black : .white)
-                        .cornerRadius(10)
-                }
-                .frame(width: viewWidth * 0.7, alignment: isReceived ? .leading : .trailing)
-                .padding(.vertical)
-            }
-            // Align message to left (received) or right (sent)
-            .frame(maxWidth: .infinity, alignment: isReceived ? .leading : .trailing)
-        }
-    }
     
     // Return Toolbar view for user to type new message to send
     private func getToolBarView() -> some View {
